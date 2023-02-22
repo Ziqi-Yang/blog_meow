@@ -1,0 +1,64 @@
+#+title: Firefox Disable Ctrl-w
+#+date:  <2023-01-16 Mon>
+#+draft: false
+#+tags[]: firefox rice
+
+As a vim key mapping user, I found firefox ctrl-w close tab is really a annoying key shortcut. Since in vim, the key shortcut ctrl-w is defaultly mapped as deleting a word.
+
+* Solution
+Create =/usr/lib/firefox/defaults/pref/autoconfig.js=
+#+begin_src js
+pref("general.config.filename", "firefox.cfg"); // our configuration file is called firefox.cfg at the roor directory of firefox lib
+pref("general.config.obscure_value", 0);
+pref("general.config.sandbox_enabled", false); // after testing, it is needed to disable sanbox
+#+end_src
+
+Create =/usr/lib/firefox/firefox.cfg=
+
+You can simply put your configuration here, but I recommend you to use it as an intermediate.
+#+begin_src js
+// IMPORTANT: Start your code on the 2nd line. The first line is forced to be a comment
+var home = getenv("HOME");
+
+// your configuration should be placed at ~/.mozilla/firefox/user.js
+lockPref("autoadmin.global_config_url", "file:" + home + "/.mozilla/firefox/user.js");
+#+end_src
+
+Create =~/.mozilla/firefox/user.js=
+#+begin_src js
+// disable ctrl+w
+try {
+ let {classes:Cc, interfaces:Ci, manager:Cm, utils:Cu} = Components;
+ const {Services} = Cu.import('resource://gre/modules/Services.jsm');
+ function ConfigJS() { Services.obs.addObserver(this, 'chrome-document-global-created', false); }
+ ConfigJS.prototype = {
+  observe: function (aSubject) { aSubject.addEventListener('DOMContentLoaded', this, {once: true}); },
+  handleEvent: function (aEvent) {
+   let document = aEvent.originalTarget;
+   let window = document.defaultView;
+   let location = window.location;
+   if (/^(chrome:(?!\/\/(global\/content\/commonDialog|browser\/content\/webext-panels)\.x?html)|about:(?!blank))/i.test(location.href)) {
+    if (window._gBrowser) {
+      let attr, elm, key, mbo;
+      let KEYS = ['key_close'];
+      let ATTR = ['key','modifiers','command','oncommand'];
+      for (key in KEYS){
+       elm = window.document.getElementById(KEYS[key]);
+       if (elm) for (attr in ATTR) if (ATTR[attr] in elm.attributes) elm.removeAttribute(ATTR[attr]);
+      }
+    }
+   }
+  }
+ };
+ if (!Services.appinfo.inSafeMode) { new ConfigJS(); }
+} catch(e) {Cu.reportError(e);}
+#+end_src
+
+* Tips and Tricks
+- To debug all the keybindings, please goto =chrome://browser/content/browser.xhtml=, and open your development tool(=f12=)
+- Disable and eneble firefox options: =about:config=
+- Aur package =firefox-user-autoconfig= does the first two steps, however, it doesn't disable firefox sandbox currently(v1-1), so you need to disable it by yourself.
+
+* Useful Resources
+- https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig
+- https://support.mozilla.org/en-US/questions/1378404

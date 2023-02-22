@@ -1,0 +1,7 @@
+#+title: AUR Contribution Guide
+#+date:  <2023-01-09 Mon>
+#+draft: false
+#+tags[]: open-source aur
+
+- [[https://wiki.archlinux.org/title/Category:Package_development][Category:Package development - ArchWiki]]
+- [[https://madskjeldgaard.dk/posts/aur-package-workflow/][Notes on creating packages for the Arch User Repository (AUR)]]

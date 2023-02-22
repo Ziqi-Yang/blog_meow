@@ -1,0 +1,59 @@
+baseURL: http://example.org/
+languageCode: en-us
+title: Meow
+theme:
+  - github.com/Ziqi-Yang/hugo-theme-meow
+
+module:
+  proxy: https://goproxy.cn, direct
+  imports:
+    - path: github.com/Ziqi-Yang/hugo-theme-meow
+
+taxonomy:
+   tag: tags
+   category: categories
+
+# better summary count and other support for CJK
+hasCJKLanguage: true
+
+menu:
+  main:
+    - idenfier: home
+      name: Home
+      url: /
+      weight: 1
+    - idenfier: tags
+      name: Tags
+      url: /tags/
+      weight: 2
+    - idenfier: archives
+      name: Archives
+      url: /archives/
+      weight: 3
+    - idenfier: About
+      name: About me
+      url: /about/
+      weight: 4
+    - idenfier: Rss
+      name: Rss
+      url: /index.xml/
+      weight: 5
+
+markup:
+  tableOfContents:
+    startLevel: 1
+    endLevel: 3
+  highlight:
+    linenos: true
+    style: emacs
+
+params:
+  site_description: "Rust, Linux and Emacs cookies."
+  homepage:
+    show_description: true
+    sections:
+      - programme
+      - study
+      - readings
+      - reflections
+    section_number_posts: 10

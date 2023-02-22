@@ -1,0 +1,99 @@
+#+title: Emacs lsp-java Project Settings
+#+date:  <2022-12-21 Wed>
+#+draft: false
+#+tags[]: emacs doom-emacs
+
+Create a java project with third libriaries support
+
+=lsp-java= is an awesome package for =lsp-mode= to open a java project. However, after some testing, I found it
+has difficulty in importing third party libraries with _pure_ java project(not use maven, Gradle). Moreover, it
+only has a limited ability to interact with a Gradle project. However, it has great support for =maven= project, which
+means we can use maven to import third party java libraries.
+This article will focus on import a local library by maven.
+
+* Initialize a project
+#+begin_src bash
+mvn -B archetype:generate -DgroupId=PacMan -DartifactId=PacMan -Darchet
+ypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
+#+end_src
+This command will create a folder named =PacMan=(=artifactId=), where there is folder called =src=, and its structure is like:
+#+begin_src
+├── src
+│   ├── main
+│   │   └── java
+│   │       └── PacMan(`groudId`)
+#+end_src
+If your =groupId= is "com.pacman.xx", then the directory structure may be like:
+#+begin_src
+├── src
+│   ├── main
+│   │   └── java
+│   │       └── com
+                └── pacman
+                    └── xx
+#+end_src
+In our example, you can write code in the =pacman= folder.
+
+*  Specify java version:
+
+edit =pom.xml= file in the project root directory
+
+#+begin_src xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- ... -->
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+
+  <!-- ... -->
+</project>
+#+end_src
+
+* Add third party libriary
+
+#+begin_src bash
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <!-- ... -->
+
+  <dependencies>
+
+    <!-- ... -->
+
+    <dependency>
+      <groupId>ucd.comp2011j</groupId>
+      <artifactId>game-engine</artifactId>
+      <version>1.00</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/libs/COMP2011J.Game.Engine.jar</systemPath>
+    </dependency>
+  </dependencies>
+
+  <!-- ... -->
+</project>
+#+end_src
+
+Note that =${basedir}= stands for the directory that =pom.xml= located.
+
+* Run Project:
+create a =Makefile= in the project root directory:
+
+#+begin_src makefile
+all: compile
+
+compile:
+	mvn package
+	java -cp "target/PacMan-1.0-SNAPSHOT.jar:<your third party libriary relative path>" PacMan.GameStart # <Package Name>.<Class Name>
+
+clean:
+	mvn clean
+#+end_src
+
+Use command =make= to run, and =make clean= to clean
+
+In =doom emacs=, you can type =<SPC>pR= and enter =make= to run the project

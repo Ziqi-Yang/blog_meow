@@ -1,0 +1,13 @@
+#+title: Semophore_s2_w1
+#+date: 2023-02-21T11:12:44+08:00
+#+draft: true
+#+tags[]: reflection
+
+* Tuesday
+1. book =Computer Network - a Top-Down approach= p31 - p43
+2. =hugo.el= goto draft function
+3. 入党积极分子表格填写以及思想报告。
+
+* Wednesday
+1. book =Computer Network - a Top-Down approach= p44 - p51
+

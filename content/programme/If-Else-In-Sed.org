@@ -1,0 +1,16 @@
+#+title: If Else In Sed
+#+date:  <2022-12-21 Wed>
+#+draft: false
+#+tags[]: shell sed
+If-else statement in linux command sed
+
+use =t= or =T= to control the sed workflow.[[https://getdocs.org/Sed/Branching-and-flow-control][(more]])
+#+begin_src bash
+sed -i "s/animations = true/animations = false/;t;\
+    s/animations = false/animations = true/" "$picom_config"
+#+end_src
+
+* Reference
+
+1. [[https://stackoverflow.com/questions/68320533/how-to-toggle-a-comment-in-a-line-using-sed#answer-72615471][How to toggle a comment in a line using sed]]
+2. [[https://getdocs.org/Sed/Branching-and-flow-control][Sed/Branching-and-flow-control]]

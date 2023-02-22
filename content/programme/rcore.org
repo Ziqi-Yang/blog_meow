@@ -1,0 +1,18 @@
+#+title: rCore
+#+date: 2023-02-20T22:35:19+08:00
+#+draft: trua
+#+tags[]: rust os rCore
+
+* Useful Command
+** To show platforms based on riscv that rustc supports
+#+begin_src shell
+rustc --print target-list | grep riscv
+#+end_src
+
+* Rust Note
+1. use ~#![no_std]~ to not use =std=, so we can build a program which doesn't require =std=.
+2. use ~#![no_main]~ to make compiler don't do initialization work
+
+* Toolings
+1. =strace=
+2. [[https://github.com/rust-embedded/cargo-binutils][cargo-binutils]]
