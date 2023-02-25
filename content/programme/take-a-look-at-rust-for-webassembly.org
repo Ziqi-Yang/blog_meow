@@ -1,0 +1,14 @@
+#+title: Take a Look at Rust for Webassembly
+#+date: 2023-02-22T21:54:34+08:00
+#+draft: true
+#+tags[]: webassembly rust
+
+* Resources
+offical book [[https://rustwasm.github.io/docs/book/introduction.html][Rust 🦀 and WebAssembly]]
+
+* Tools
+#+begin_src shell
+sudo pacman -S wasm-pack cargo-generate 
+#+end_src
+
+Use =lts= npm to make sure your program running correctly.

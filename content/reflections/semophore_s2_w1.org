@@ -10,4 +10,5 @@
 
 * Wednesday
 1. book =Computer Network - a Top-Down approach= p44 - p51
+2. start reading [[https://rustwasm.github.io/docs/book/introduction.html][Rust 🦀 and WebAssembly]]
 

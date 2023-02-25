@@ -1,0 +1,6 @@
+#+title: Rust_snippets
+#+date: 2023-02-24T10:10:54+08:00
+#+draft: true
+#+tags[]: rust
+
+
