@@ -1,0 +1,152 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=http://blog.animer.live/scss/main.min.css></head><link rel=stylesheet href=http://blog.animer.live/scss/single.min.css><body><div id=nav-border><nav id=nav><a class=nav-link href=/>Home</a>
+<a class=nav-link href=/tags/>Tags</a>
+<a class=nav-link href=/archives/>Archives</a>
+<a class=nav-link href=/about/>About me</a>
+<a class=nav-link href=/index.xml/>Rss</a></nav></div><div id=content><main><article><header><h1>Emacs lsp-java Project Settings</h1></header><p><strong>Update: 2023-2-25 use eglot instead(in the last of the article)</strong></p><p>Create a java project with third libriaries support</p><p><code class=verbatim>lsp-java</code> is an awesome package for <code class=verbatim>lsp-mode</code> to open a java project. However, after some testing, I found it
+has difficulty in importing third party libraries with <span style=text-decoration:underline>pure</span> java project(not use maven, Gradle). Moreover, it
+only has a limited ability to interact with a Gradle project. However, it has great support for <code class=verbatim>maven</code> project, which
+means we can use maven to import third party java libraries.
+This article will focus on import a local library by maven.</p><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>Initialize a project</h2><div id=outline-text-headline-1 class=outline-text-2><div class="src src-bash"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mvn -B archetype:generate -DgroupId<span style=color:#666>=</span>PacMan -DartifactId<span style=color:#666>=</span>PacMan -Darchet
+</span></span><span style=display:flex><span><span style=color:#b8860b>ypeArtifactId</span><span style=color:#666>=</span>maven-archetype-quickstart -DarchetypeVersion<span style=color:#666>=</span>1.4</span></span></code></pre></td></tr></table></div></div></div><p>This command will create a folder named <code class=verbatim>PacMan=(=artifactId</code>), where there is folder called <code class=verbatim>src</code>, and its structure is like:</p><div class="src src-text"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>├── src
+</span></span><span style=display:flex><span>│   ├── main
+</span></span><span style=display:flex><span>│   │   └── java
+</span></span><span style=display:flex><span>│   │       └── PacMan(`groudId`)</span></span></code></pre></td></tr></table></div></div></div><p>If your <code class=verbatim>groupId</code> is "com.pacman.xx", then the directory structure may be like:</p><div class="src src-text"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>├── src
+</span></span><span style=display:flex><span>│   ├── main
+</span></span><span style=display:flex><span>│   │   └── java
+</span></span><span style=display:flex><span>│   │       └── com
+</span></span><span style=display:flex><span>                └── pacman
+</span></span><span style=display:flex><span>                    └── xx</span></span></code></pre></td></tr></table></div></div></div><p>In our example, you can write code in the <code class=verbatim>pacman</code> folder.</p></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>Specify java version:</h2><div id=outline-text-headline-2 class=outline-text-2><p>edit <code class=verbatim>pom.xml</code> file in the project root directory</p><div class="src src-xml"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:green;font-weight:700>&lt;project</span> <span style=color:#b44>xmlns=</span><span style=color:#b44>&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style=color:#b44>xmlns:xsi=</span><span style=color:#b44>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#b44>xsi:schemaLocation=</span><span style=color:#b44>&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&#34;</span><span style=color:green;font-weight:700>&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>&lt;!-- ... --&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:green;font-weight:700>&lt;properties&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:green;font-weight:700>&lt;project.build.sourceEncoding&gt;</span>UTF-8<span style=color:green;font-weight:700>&lt;/project.build.sourceEncoding&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:green;font-weight:700>&lt;maven.compiler.source&gt;</span>17<span style=color:green;font-weight:700>&lt;/maven.compiler.source&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:green;font-weight:700>&lt;maven.compiler.target&gt;</span>17<span style=color:green;font-weight:700>&lt;/maven.compiler.target&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:green;font-weight:700>&lt;/properties&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#080;font-style:italic>&lt;!-- ... --&gt;</span>
+</span></span><span style=display:flex><span><span style=color:green;font-weight:700>&lt;/project&gt;</span></span></span></code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-3 class=outline-2><h2 id=headline-3>Add third party libriary</h2><div id=outline-text-headline-3 class=outline-text-2><div class="src src-bash"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>&lt;project <span style=color:#b8860b>xmlns</span><span style=color:#666>=</span><span style=color:#b44>&#34;http://maven.apache.org/POM/4.0.0&#34;</span> xmlns:xsi<span style=color:#666>=</span><span style=color:#b44>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span style=display:flex><span>  xsi:schemaLocation<span style=color:#666>=</span><span style=color:#b44>&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&#34;</span>&gt;
+</span></span><span style=display:flex><span>  &lt;!-- ... --&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  &lt;dependencies&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    &lt;!-- ... --&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    &lt;dependency&gt;
+</span></span><span style=display:flex><span>      &lt;groupId&gt;ucd.comp2011j&lt;/groupId&gt;
+</span></span><span style=display:flex><span>      &lt;artifactId&gt;game-engine&lt;/artifactId&gt;
+</span></span><span style=display:flex><span>      &lt;version&gt;1.00&lt;/version&gt;
+</span></span><span style=display:flex><span>      &lt;scope&gt;system&lt;/scope&gt;
+</span></span><span style=display:flex><span>      &lt;systemPath&gt;<span style=color:#b68;font-weight:700>${</span><span style=color:#b8860b>basedir</span><span style=color:#b68;font-weight:700>}</span>/libs/COMP2011J.Game.Engine.jar&lt;/systemPath&gt;
+</span></span><span style=display:flex><span>    &lt;/dependency&gt;
+</span></span><span style=display:flex><span>  &lt;/dependencies&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  &lt;!-- ... --&gt;
+</span></span><span style=display:flex><span>&lt;/project&gt;</span></span></code></pre></td></tr></table></div></div></div><p>Note that <code class=verbatim>${basedir}</code> stands for the directory that <code class=verbatim>pom.xml</code> located.</p></div></div><div id=outline-container-headline-4 class=outline-2><h2 id=headline-4>Run Project:</h2><div id=outline-text-headline-4 class=outline-text-2><p>create a <code class=verbatim>Makefile</code> in the project root directory:</p><div class="src src-makefile"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span><span style=color:#00a000>all</span><span style=color:#666>:</span> compile
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00a000>compile</span><span style=color:#666>:</span>
+</span></span><span style=display:flex><span>	mvn package
+</span></span><span style=display:flex><span>	java -cp <span style=color:#b44>&#34;target/PacMan-1.0-SNAPSHOT.jar:&lt;your third party libriary relative path&gt;&#34;</span> PacMan.GameStart <span style=color:#080;font-style:italic># &lt;Package Name&gt;.&lt;Class Name&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00a000>clean</span><span style=color:#666>:</span>
+</span></span><span style=display:flex><span>	mvn clean
+</span></span></code></pre></td></tr></table></div></div></div><p>Use command <code class=verbatim>make</code> to run, and <code class=verbatim>make clean</code> to clean</p><p>In <code class=verbatim>doom emacs</code>, you can type <code class=verbatim>&lt;SPC>pR</code> and enter <code class=verbatim>make</code> to run the project</p></div></div><div id=outline-container-headline-5 class=outline-2><h2 id=headline-5>Eglot</h2><div id=outline-text-headline-5 class=outline-text-2><ol><li>make sure you have installed `jdtls`, and have a system java version >= 17</li><li><p>to run the java project, you can use this `Makefile`</p><div class="src src-makefile"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span> <span style=color:#080;font-style:italic># Makefile for c/c++ program</span>
+</span></span><span style=display:flex><span> <span style=color:#080;font-style:italic>#</span>
+</span></span><span style=display:flex><span> <span style=color:#080;font-style:italic># ========================================</span>
+</span></span><span style=display:flex><span> <span style=color:#080;font-style:italic># @author: Ziqi Yang&lt;mr.ziqiyang@gmail.com&gt;</span>
+</span></span><span style=display:flex><span> <span style=color:#080;font-style:italic># @reference: https://makefiletutorial.com/#makefile-cookbook</span>
+</span></span><span style=display:flex><span> <span style=color:#080;font-style:italic># ========================================</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> SRC_DIR :<span style=color:#666>=</span> src
+</span></span><span style=display:flex><span> LIBS_DIR :<span style=color:#666>=</span> libs
+</span></span><span style=display:flex><span> BUILD_DIR :<span style=color:#666>=</span> target
+</span></span><span style=display:flex><span> ENTRY_POINT :<span style=color:#666>=</span> Main
+</span></span><span style=display:flex><span> ENTRY_FILE :<span style=color:#666>=</span> <span style=color:#a2f;font-weight:700>$(</span>SRC_DIR<span style=color:#a2f;font-weight:700>)</span>/Main.java
+</span></span><span style=display:flex><span> LIBS :<span style=color:#666>=</span> <span style=color:#a2f;font-weight:700>$(</span>shell find <span style=color:#a2f;font-weight:700>$(</span>LIBS_DIR<span style=color:#a2f;font-weight:700>)</span> -name <span style=color:#b44>&#34;*.jar&#34;</span> | paste -sd <span style=color:#b44>&#34;:&#34;</span> -<span style=color:#a2f;font-weight:700>)</span>
+</span></span><span style=display:flex><span> ARGS :<span style=color:#666>=</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00a000>.PHONY</span><span style=color:#666>:</span> build run
+</span></span><span style=display:flex><span> build:
+</span></span><span style=display:flex><span>   mkdir -p <span style=color:#a2f;font-weight:700>$(</span>BUILD_DIR<span style=color:#a2f;font-weight:700>)</span>
+</span></span><span style=display:flex><span>   javac -d <span style=color:#a2f;font-weight:700>$(</span>BUILD_DIR<span style=color:#a2f;font-weight:700>)</span> -cp .:<span style=color:#a2f;font-weight:700>$(</span>LIBS<span style=color:#a2f;font-weight:700>)</span> -sourcepath <span style=color:#a2f;font-weight:700>$(</span>SRC_DIR<span style=color:#a2f;font-weight:700>)</span> <span style=color:#a2f;font-weight:700>$(</span>ENTRY_FILE<span style=color:#a2f;font-weight:700>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> run:
+</span></span><span style=display:flex><span>   java -cp <span style=color:#a2f;font-weight:700>$(</span>BUILD_DIR<span style=color:#a2f;font-weight:700>)</span>:<span style=color:#a2f;font-weight:700>$(</span>LIBS<span style=color:#a2f;font-weight:700>)</span> <span style=color:#a2f;font-weight:700>$(</span>ENTRY_FILE<span style=color:#a2f;font-weight:700>)</span> <span style=color:#a2f;font-weight:700>$(</span>ARGS<span style=color:#a2f;font-weight:700>)</span>
+</span></span></code></pre></td></tr></table></div></div></div></li></ol></div></div></article><aside><nav id=TableOfContents><ul><li><a href=#headline-1>Initialize a project</a></li><li><a href=#headline-2>Specify java version:</a></li><li><a href=#headline-3>Add third party libriary</a></li><li><a href=#headline-4>Run Project:</a></li><li><a href=#headline-5>Eglot</a></li></ul></nav></aside></main></div><script src=/js/single.min.js></script></body></html>

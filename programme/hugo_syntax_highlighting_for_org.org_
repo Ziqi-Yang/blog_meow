@@ -1,0 +1,106 @@
+#+title: Hugo Syntax Highlighting for Org
+#+date: 2023-02-19T09:02:17+08:00
+#+draft: false
+#+tags[]: hugo org hugo-theme-meow
+
+Code are stolen from [[https://github.com/ruippeixotog/quicksort][ruippeixotog/quicksort]]
+
+* Inline
+1. ==hl_lines==
+2. ~~hl_lines~~
+3. src_org{src_org{third}} hugo exports this type of inline code block into actual code block :(
+
+* Src Block
+Maybe hugo doesn't support =hl_lines= property to highlight certain lines in a src block in org.
+
+However, you can use =hugo shortcodes= to achieve this.
+** Example
+*** Traditionally adding property
+#+begin_src rust :hl_lines 8
+// #+begin_src rust :hl_lines 8
+use std::io;
+use std::io::BufRead;
+
+fn quicksort(v: &mut [i32]) {
+    if !v.is_empty() {
+        let mut sep = 0;
+        for i in 1..v.len() {
+            if v[i] < v[0] {
+                sep += 1;
+                v.swap(sep, i);
+            }
+        }
+
+        v.swap(0, sep);
+        quicksort(&mut v[..sep]);
+        quicksort(&mut v[(sep + 1)..]);
+    }
+}
+
+fn main() {
+    let stdin = io::stdin();
+    let mut v: Vec<i32> = match stdin.lock().lines().nth(1) {
+        Some(Ok(s)) => s.split(' ').flat_map(|s| s.parse()).collect(),
+        _ => unreachable!()
+    };
+
+    quicksort(&mut v);
+
+    let v_str: Vec<String> = v.iter().map(|x| x.to_string()).collect();
+    println!("{}", v_str.join(" "));
+}
+#+end_src
+
+*** Using shortcode
+usage: (Note the =/*= and =*/= notations are to prevent itselves being interpreted by hugo.)
+#+begin_src org
+{{/* < highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" > /*}}
+// ... code
+{{/* < / highlight > */}}
+#+end_src
+If you want to also highlight the src block in org mode, you can put =#+BEGIN_SRC= and =#+END_SRC= inside the shortcode. (However, the fences will be inside the code block)
+example: (Note two comma at the beginning of fences are to distinguish itself from the its parent src block.)
+
+#+begin_src org
+{{/* < highlight rust "linenos=table,hl_lines=8 15-17,linenostart=199" > */}}
+,#+begin_src rust
+// code
+,#+end_src
+{{/* < / highlight > */}}
+#+end_src
+
+{{< highlight rust "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
+#+begin_src rust
+use std::io;
+use std::io::BufRead;
+
+fn quicksort(v: &mut [i32]) {
+    if !v.is_empty() {
+        let mut sep = 0;
+        for i in 1..v.len() {
+            if v[i] < v[0] {
+                sep += 1;
+                v.swap(sep, i);
+            }
+        }
+
+        v.swap(0, sep);
+        quicksort(&mut v[..sep]);
+        quicksort(&mut v[(sep + 1)..]);
+    }
+}
+
+fn main() {
+    let stdin = io::stdin();
+    let mut v: Vec<i32> = match stdin.lock().lines().nth(1) {
+        Some(Ok(s)) => s.split(' ').flat_map(|s| s.parse()).collect(),
+        _ => unreachable!()
+    };
+
+    quicksort(&mut v);
+
+    let v_str: Vec<String> = v.iter().map(|x| x.to_string()).collect();
+    println!("{}", v_str.join(" "));
+}
+#+end_src
+{{< / highlight >}}
