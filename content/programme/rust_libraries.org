@@ -1,0 +1,53 @@
+#+title: Rust_libraries
+#+date: 2023-03-01T10:13:58+08:00
+#+draft: false
+#+tags[]: rust libraries
+
+* Resources
+1. [[https://github.com/rust-unofficial/awesome-rust][awesome-rust]]
+2. [[https://course.rs/practice/third-party-libs.html][日常开发第三方库精选]]
+
+* Rust Language Related
+** Error
+| crate     | description                                                                                 |
+|-----------+---------------------------------------------------------------------------------------------|
+| [[https://crates.io/crates/anyhow][anyhow]]    | Flexible concrete Error type built on std::error::Error                                     |
+| [[https://crates.io/crates/thiserror][thiserror]] | derive(Error)                                                                               |
+| [[https://crates.io/crates/futures][futures]]   | futures and streams featuring zero allocations, composability, and iterator-like interfaces |
+|           |                                                                                             |
+
+** Logging
+| crate     | description                                                                                 |
+|-----------+---------------------------------------------------------------------------------------------|
+| [[https://crates.io/crates/log][log]]     | Offical, to show message, it needs a implementation, recommend [[https://docs.rs/env_logger/0.10.0/env_logger/][env_logger]] |
+| [[https://github.com/tokio-rs/tracing][tracing]] | trace, better for async programming development                           |
+|         |                                                                           |
+
+** Concurrency
+| crate     | description                                                               |
+|-----------+---------------------------------------------------------------------------|
+| [[https://github.com/tokio-rs/tokio][tokio]]     | suitable for *IO-intensive* computing, *not* the best for IO-intensive,       |
+|           | read a log of files(use thread instead) and a small amout of http request |
+| [[https://crates.io/crates/rayon][rayon]]     | suitable for *CPU-intensive* computing                                      |
+| [[https://github.com/seanmonstar/reqwest][reqwest]]   | suitable for a *small* amout of requests                                  |
+| [[https://crates.io/crates/shadow-rs][shadow-rs]] | A build-time information stored in your rust project                      |
+|           |                                                                           |
+
+* System Utils
+| crate     | description                                   |
+|-----------+-----------------------------------------------|
+| [[https://crates.io/crates/dirs-next][dirs-next]] | provides platform-specific standard locations |
+| [[https://crates.io/crates/nix][nix]]       | Rust friendly bindings to *nix APIs           |
+|           |                                               |
+
+
+* Terminal 
+
+| crate        | description                                                                |
+|--------------+----------------------------------------------------------------------------|
+| [[https://crates.io/crates/nu-ansi-term][nu-ansi-term]] | Library for ANSI terminal colors and styles (bold, underline)              |
+| [[https://crates.io/crates/clap][clap]]         | A simple to use, efficient, and full-featured Command Line Argument Parser |
+| [[https://crates.io/crates/atty][atty]]         | A simple interface for querying atty                                       |
+| [[https://crates.io/crates/rpassword][rpassword]]    | Read passwords in console applications.                                    |
+|              |                                                                            |
+

@@ -1,0 +1,75 @@
+#+title: Rust_concurrency
+#+date: 2023-02-27T13:50:38+08:00
+#+draft: true
+#+tags[]: rust concurrency
+
+* Scope
+Thread in scope can borrow variable that is not static(And should be a read-only borrow for *multiple* threads, so code like =numbers.into_iter()= is not allowed in one or more in multiple threads, but can be used in a thread where there is only one thread in scope)
+
+#+begin_src rust
+use std::thread;
+
+fn main() {
+    let numbers = vec![1,2,3];
+    thread::scope(|s| {
+        s.spawn(||{
+            println!("length: {}", numbers.len());
+        });
+        s.spawn(|| {
+            for n in numbers.iter() { // or &numbers
+                println!("{n}");
+            }
+        });
+        // auto join all threads in scope
+    });
+    println!("end");
+}
+
+#+end_src
+
+#+RESULTS:
+: length: 3
+: 1
+: 2
+: 3
+: end
+
+* Share Reference
+1. use =static=
+2. use =Box::leak=
+3. use =std::sync::Arc=
+   better style for reuse =Arc= (use the same name)
+   #+begin_src shell
+   let a = Arc::new([1, 2, 3]);
+
+   thread::spawn({
+   let a = a.clone();
+   move || {
+       dbg!(a);
+   }
+   });
+
+   dbg!(a);
+   #+end_src
+
+* Interior Mutability
+1. Cell 
+   a) allow you to copy the value out, or replace it with another value as a whole
+      #+begin_src rust
+      let _ = a.get();
+      b.set(b.get() + 1);
+      #+end_src
+   b) however, to borrow the value it holds, we need to move a value out, modify it and then put it back
+      #+begin_src rust
+      // v: &Cell<Vec<i32>>
+      let mut v2 = v.take(); // Replaces the contents of the Cell with an empty Vec
+      v2.push(1);
+      v.set(v2); // Put the modified Vec back
+      #+end_src
+2. RefCell 
+   allow you to borrow its contents, at a small runtime cost.
+   #+begin_src rust
+   // v: &RefCell<Vec<i32>>
+   v.borrow_mut().push(1); // We can modify the `Vec` directly.
+   #+end_src
+   

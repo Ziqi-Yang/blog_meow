@@ -3,4 +3,6 @@
 #+draft: true
 #+tags[]: rust
 
-
+1. implement =Default= to change a structure's default value.
+2. use =include_str!= (compile time) or =fs::read_to_string= (runtime) to include a file's content as str.
+3. Filter method: =filter=  =take_while=

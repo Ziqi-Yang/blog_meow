@@ -1,0 +1,100 @@
+#+title: Clash_on_linux_server
+#+date: 2023-02-27T18:42:02+08:00
+#+draft: false
+#+tags[]: clash server
+
+* Tips
+Github Acceleration: https://ghproxy.com/
+
+* Steps
+** Download clash core
+1. goto =https://github.com/Dreamacro/clash/releases=
+   download corresponding releases into your server
+   #+begin_src shell
+   # use github acceleration service
+   wget https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/v1.13.0/clash-linux-amd64-v1.13.0.gz
+   # or manual download it and use scp/rsync to transfer it to your server
+   #+end_src
+2. unarchive and install core
+   change =<clash>= to the actual name of the downloaded file
+   #+begin_src shell
+   gzip -d <clash>.gz
+   mv <clash>.gz clash.gz
+   chmod +x ./clash
+   mv ./clash /usr/bin/clash
+   #+end_src
+** Make clash configuration directory
+#+begin_src shell
+sudo mkdir /etc/clash
+#+end_src
+
+** Config.yaml
+copy your =config.yaml= and paste it on your server
+#+begin_src shell
+sudo nvim /etc/clash/config.yaml
+#+end_src
+
+** Country.mmdb
+Go to https://github.com/Dreamacro/maxmind-geoip/releases/
+#+begin_src shell
+sudo wget -O /etc/clash/Country.mmdb https://ghproxy.com/https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
+#+end_src
+
+** Run clash daemon
+*** One Method: manualy run
+#+begin_src shell
+sudo clash -d /etc/clash
+#+end_src
+*** Another Method: use service
+#+begin_src shell
+sudo nvim /etc/systemd/system/clash.service
+#+end_src
+
+fill it with this content:
+#+begin_src
+[Unit]
+Description=clash daemon
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/clash -d /etc/clash/
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
+#+end_src
+
+Enable and run clash:
+#+begin_src shell
+sudo systemctl enable --now clash
+#+end_src
+
+Show Status
+#+begin_src shell
+sudo systemctl status clash
+#+end_src
+
+** (optional)Enable Web Control Panel
+1. Add =secret: <your password>= to =/etc/clash/config.yaml=
+2. Allow port =9090= on your vps admin panel
+3. restart clash service
+   #+begin_src shell
+   sudo systemctl restart clash
+   #+end_src
+
+** Use Proxy
+use =export= to enable proxy one session
+use ~all_proxy=<cmd>~ to use inline command proxy.
+My fish script(=~/.config/fish/functions/gfw.fish=):
+#+begin_src fish
+function gfw
+    if test "$argv" = "" # if no argument is passed
+        echo set global proxy to 127.0.0.1:7890
+        export all_proxy=http://127.0.0.1:7890
+        return 0
+    end
+
+    env all_proxy=http://127.0.0.1:7890 $argv
+end
+#+end_src
+
+
