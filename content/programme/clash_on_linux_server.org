@@ -1,7 +1,7 @@
 #+title: Clash_on_linux_server
 #+date: 2023-02-27T18:42:02+08:00
 #+draft: false
-#+tags[]: clash server
+#+tags[]: clash server proxy
 
 * Tips
 Github Acceleration: https://ghproxy.com/
@@ -82,6 +82,7 @@ sudo systemctl status clash
    #+end_src
 
 ** Use Proxy
+*** Termainal Environment Variable
 use =export= to enable proxy one session
 use ~all_proxy=<cmd>~ to use inline command proxy.
 My fish script(=~/.config/fish/functions/gfw.fish=):
@@ -96,5 +97,10 @@ function gfw
     env all_proxy=http://127.0.0.1:7890 $argv
 end
 #+end_src
-
+*** Git
+Recommend to use =ghproxy= instead of proxy.
+#+begin_src shell
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+#+end_src
 

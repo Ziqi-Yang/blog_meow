@@ -36,7 +36,7 @@ menu:
       weight: 4
     - idenfier: Rss
       name: Rss
-      url: /index.xml/
+      url: /index.xml
       weight: 5
 
 markup:

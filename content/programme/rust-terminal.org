@@ -1,0 +1,18 @@
+#+title: Rust Terminal
+#+date: 2023-03-03T14:25:25+08:00
+#+draft: true
+#+tags[]: rust
+
+* crossterm
+1. use =enable-raw-mode= and =disable-raw-mode= to enable/disable [[https://docs.rs/crossterm/0.26.1/crossterm/terminal/index.html#raw-mode][raw mode]]
+   Those modes will be set when enabling raw modes:
+   a) Input will not be forwarded to screen
+   b) Input will not be processed on enter press
+   c) Input will not be line buffered (input sent byte-by-byte to input buffer)
+   d) Special keys like backspace and CTRL+C will not be processed by terminal driver
+   e) New line character will not be processed therefore println! can’t be used, use write! instead
+2. use =EnterAlternateScreen= and =LeaveAlternateScreen= to enter and leave alternative screen.
+   A alternative screen: image vim
+   To make it actual like vim: clean alternate screen on show and nothing on alternative screen displayed when exit, follow the [[https://docs.rs/tui/0.19.0/tui/#building-a-user-interface-ui][example]]
+   
+

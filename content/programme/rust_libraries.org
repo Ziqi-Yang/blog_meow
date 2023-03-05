@@ -29,7 +29,7 @@
 | [[https://github.com/tokio-rs/tokio][tokio]]     | suitable for *IO-intensive* computing, *not* the best for IO-intensive,       |
 |           | read a log of files(use thread instead) and a small amout of http request |
 | [[https://crates.io/crates/rayon][rayon]]     | suitable for *CPU-intensive* computing                                      |
-| [[https://github.com/seanmonstar/reqwest][reqwest]]   | suitable for a *small* amout of requests                                  |
+| [[https://github.com/seanmonstar/reqwest][reqwest]]   | suitable for a *small* amout of requests                                    |
 | [[https://crates.io/crates/shadow-rs][shadow-rs]] | A build-time information stored in your rust project                      |
 |           |                                                                           |
 

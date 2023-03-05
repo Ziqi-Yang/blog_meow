@@ -1,0 +1,10 @@
+#+title: Crafting Interpreters
+#+date: 2023-03-05T10:06:18+08:00
+#+draft: true
+#+tags[]: interpreter language
+
+Web Version of this Book(free): http://www.craftinginterpreters.com/contents.html
+
+Others' implementations:
+1. [[https://github.com/munificent/craftinginterpreters/wiki/Lox-implementations][collections]]
+2. [[https://github.com/ajeetdsouza/loxcraft][loxcraft]]: rust/bytecode/language server/online playground
