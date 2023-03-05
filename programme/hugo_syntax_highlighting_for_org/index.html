@@ -2,39 +2,39 @@
 <a class=nav-link href=/blog_meow/tags/>Tags</a>
 <a class=nav-link href=/blog_meow/archives/>Archives</a>
 <a class=nav-link href=/blog_meow/about/>About me</a>
-<a class=nav-link href=/blog_meow/index.xml/>Rss</a></nav></div><div id=content><main><article><header><h1>Hugo Syntax Highlighting for Org</h1></header><p>Code are stolen from <a href=https://github.com/ruippeixotog/quicksort>ruippeixotog/quicksort</a></p><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>Inline</h2><div id=outline-text-headline-1 class=outline-text-2><ol><li><code class=verbatim>=hl_lines=</code></li><li><code>~hl_lines~</code></li><li><div class="src src-inline src-org"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-org data-lang=org><span style=display:flex><span>src_org{third}</span></span></code></pre></td></tr></table></div></div></div>hugo exports this type of inline code block into actual code block :(</li></ol></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>Src Block</h2><div id=outline-text-headline-2 class=outline-text-2><p>Maybe hugo doesn't support <code class=verbatim>hl_lines</code> property to highlight certain lines in a src block in org.</p><p>However, you can use <code class=verbatim>hugo shortcodes</code> to achieve this.</p><div id=outline-container-headline-3 class=outline-3><h3 id=headline-3>Example</h3><div id=outline-text-headline-3 class=outline-text-3><div id=outline-container-headline-4 class=outline-4><h4 id=headline-4>Traditionally adding property</h4><div id=outline-text-headline-4 class=outline-text-4><div class="src src-rust"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+<a class=nav-link href=/blog_meow/index.xml>Rss</a></nav></div><div id=content><main><article><header><h1>Hugo Syntax Highlighting for Org</h1></header><p>Code are stolen from <a href=https://github.com/ruippeixotog/quicksort>ruippeixotog/quicksort</a></p><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>Inline</h2><div id=outline-text-headline-1 class=outline-text-2><ol><li><code class=verbatim>=hl_lines=</code></li><li><code>~hl_lines~</code></li><li><div class="src src-inline src-org"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-org data-lang=org><span style=display:flex><span>src_org{third}</span></span></code></pre></td></tr></table></div></div></div>hugo exports this type of inline code block into actual code block :(</li></ol></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>Src Block</h2><div id=outline-text-headline-2 class=outline-text-2><p>Maybe hugo doesn't support <code class=verbatim>hl_lines</code> property to highlight certain lines in a src block in org.</p><p>However, you can use <code class=verbatim>hugo shortcodes</code> to achieve this.</p><div id=outline-container-headline-3 class=outline-3><h3 id=headline-3>Example</h3><div id=outline-text-headline-3 class=outline-text-3><div id=outline-container-headline-4 class=outline-4><h4 id=headline-4>Traditionally adding property</h4><div id=outline-text-headline-4 class=outline-text-4><div class="src src-rust"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=display:flex><span><span style=color:#080;font-style:italic>// #+begin_src rust :hl_lines 8
 </span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>use</span><span style=color:#bbb> </span>std::io;<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#a2f;font-weight:700>use</span><span style=color:#bbb> </span>std::io::BufRead;<span style=color:#bbb>
@@ -65,55 +65,55 @@
 </span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>quicksort(<span style=color:#666>&amp;</span><span style=color:#a2f;font-weight:700>mut</span><span style=color:#bbb> </span>v);<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>    </span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span>v_str: <span style=color:#a2f>Vec</span><span style=color:#666>&lt;</span><span style=color:#a2f>String</span><span style=color:#666>&gt;</span><span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>v.iter().map(<span style=color:#666>|</span>x<span style=color:#666>|</span><span style=color:#bbb> </span>x.to_string()).collect();<span style=color:#bbb>
-</span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>println!(<span style=color:#b44>&#34;{}&#34;</span>,<span style=color:#bbb> </span>v_str.join(<span style=color:#b44>&#34; &#34;</span>));<span style=color:#bbb>
-</span></span></span><span style=display:flex><span><span style=color:#bbb></span>}</span></span></code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-5 class=outline-4><h4 id=headline-5>Using shortcode</h4><div id=outline-text-headline-5 class=outline-text-4><p>usage: (Note the <code class=verbatim>/*</code> and <code class=verbatim>*/</code> notations are to prevent itselves being interpreted by hugo.)</p><div class="src src-org"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>println!(<span style=color:#b44>&#34;</span><span style=color:#b68;font-weight:700>{}</span><span style=color:#b44>&#34;</span>,<span style=color:#bbb> </span>v_str.join(<span style=color:#b44>&#34; &#34;</span>));<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span>}</span></span></code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-5 class=outline-4><h4 id=headline-5>Using shortcode</h4><div id=outline-text-headline-5 class=outline-text-4><p>usage: (Note the <code class=verbatim>/*</code> and <code class=verbatim>*/</code> notations are to prevent itselves being interpreted by hugo.)</p><div class="src src-org"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-org data-lang=org><span style=display:flex><span>{{<span style=font-style:italic>/* &lt; highlight go &#34;linenos=table,hl_lines=8 15-17,linenostart=199&#34; &gt; /</span><span style=font-weight:700>*}}
 </span></span></span><span style=display:flex><span><span style=font-weight:700>// ... code
 </span></span></span><span style=display:flex><span><span style=font-weight:700>{{/*</span> &lt;<span style=color:#b44> / highlight </span>&gt; */}}</span></span></code></pre></td></tr></table></div></div></div><p>If you want to also highlight the src block in org mode, you can put <code class=verbatim>#+BEGIN_SRC</code> and <code class=verbatim>#+END_SRC</code> inside the shortcode. (However, the fences will be inside the code block)
-example: (Note two comma at the beginning of fences are to distinguish itself from the its parent src block.)</p><div class="src src-org"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+example: (Note two comma at the beginning of fences are to distinguish itself from the its parent src block.)</p><div class="src src-org"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-org data-lang=org><span style=display:flex><span>{{<span style=font-style:italic>/* &lt; highlight rust &#34;linenos=table,hl_lines=8 15-17,linenostart=199&#34; &gt; */</span>}}
 </span></span><span style=display:flex><span><span style=color:#080;font-style:italic>#+begin_src </span><span style=color:#080;font-weight:700>rust</span><span style=color:#080;font-style:italic>
 </span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span><span style=color:#080;font-style:italic>// code
 </span></span></span><span style=display:flex><span><span style=color:#080;font-style:italic></span><span style=color:#080;font-style:italic>#+end_src</span>
-</span></span><span style=display:flex><span>{{<span style=font-style:italic>/* &lt; /</span> highlight &gt; */}}</span></span></code></pre></td></tr></table></div></div></div><p><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">199
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">200
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">201
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">202
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">203
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">204
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">205
-</span><span style=background-color:#dfdfdf><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">206
-</span></span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">207
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">208
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">209
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">210
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">211
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">212
-</span><span style=background-color:#dfdfdf><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">213
-</span></span><span style=background-color:#dfdfdf><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">214
-</span></span><span style=background-color:#dfdfdf><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">215
-</span></span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">216
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">217
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">218
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">219
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">220
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">221
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">222
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">223
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">224
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">225
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">226
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">227
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">228
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">229
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">230
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">231
+</span></span><span style=display:flex><span>{{<span style=font-style:italic>/* &lt; /</span> highlight &gt; */}}</span></span></code></pre></td></tr></table></div></div></div><p><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">199
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">200
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">201
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">202
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">203
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">204
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">205
+</span><span style=background-color:#dfdfdf><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">206
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">207
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">208
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">209
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">210
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">211
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">212
+</span><span style=background-color:#dfdfdf><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">213
+</span></span><span style=background-color:#dfdfdf><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">214
+</span></span><span style=background-color:#dfdfdf><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">215
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">216
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">217
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">218
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">219
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">220
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">221
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">222
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">223
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">224
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">225
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">226
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">227
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">228
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">229
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">230
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">231
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid><code class=language-rust data-lang=rust><span style=display:flex><span>#<span style=color:#666>+</span>begin_src<span style=color:#bbb> </span>rust<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#a2f;font-weight:700>use</span><span style=color:#bbb> </span>std::io;<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#a2f;font-weight:700>use</span><span style=color:#bbb> </span>std::io::BufRead;<span style=color:#bbb>
@@ -144,6 +144,6 @@ example: (Note two comma at the beginning of fences are to distinguish itself fr
 </span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>quicksort(<span style=color:#666>&amp;</span><span style=color:#a2f;font-weight:700>mut</span><span style=color:#bbb> </span>v);<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb>    </span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span>v_str: <span style=color:#a2f>Vec</span><span style=color:#666>&lt;</span><span style=color:#a2f>String</span><span style=color:#666>&gt;</span><span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>v.iter().map(<span style=color:#666>|</span>x<span style=color:#666>|</span><span style=color:#bbb> </span>x.to_string()).collect();<span style=color:#bbb>
-</span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>println!(<span style=color:#b44>&#34;{}&#34;</span>,<span style=color:#bbb> </span>v_str.join(<span style=color:#b44>&#34; &#34;</span>));<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>println!(<span style=color:#b44>&#34;</span><span style=color:#b68;font-weight:700>{}</span><span style=color:#b44>&#34;</span>,<span style=color:#bbb> </span>v_str.join(<span style=color:#b44>&#34; &#34;</span>));<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb></span>}<span style=color:#bbb>
 </span></span></span><span style=display:flex><span><span style=color:#bbb></span>#<span style=color:#666>+</span>end_src</span></span></code></pre></td></tr></table></div></div></p></div></div></div></div></div></div></article><aside><nav id=TableOfContents><ul><li><a href=#headline-1>Inline</a></li><li><a href=#headline-2>Src Block</a><ul><li><a href=#headline-3>Example</a><ul><li><a href=#headline-4>Traditionally adding property</a></li><li><a href=#headline-5>Using shortcode</a></li></ul></li></ul></li></ul></nav></aside></main></div><script src=/blog_meow/js/single.min.js></script></body></html>
