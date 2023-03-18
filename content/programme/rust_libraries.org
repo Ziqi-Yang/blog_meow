@@ -34,11 +34,11 @@
 |           |                                                                           |
 
 * System Utils
-| crate     | description                                   |
-|-----------+-----------------------------------------------|
-| [[https://crates.io/crates/dirs-next][dirs-next]] | provides platform-specific standard locations |
-| [[https://crates.io/crates/nix][nix]]       | Rust friendly bindings to *nix APIs           |
-|           |                                               |
+| crate          | description                                           |
+|----------------+-------------------------------------------------------|
+| [[https://github.com/dirs-dev/directories-rs][directories-rs]] | provides platform-specific, user-accessible locations |
+| [[https://crates.io/crates/nix][nix]]            | Rust friendly bindings to *nix APIs                   |
+|                |                                                       |
 
 
 * Terminal 

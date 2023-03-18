@@ -1,0 +1,24 @@
+#+title: Rust Import Module
+#+date: 2023-03-07T18:40:09+08:00
+#+draft: false
+#+tags[]: rust
+
+Suppose we have two files =src/main.rs= and =src/utils.rs=, to use =utils.rs= in =main.rs=, there are two ways that work.
+
+* Use =mod= keyword in =main.rs=
+#+begin_src rust
+// main.rs
+mod crate::utils;
+// mod utils; // use relative path to import
+#+end_src
+
+* Use =pub mod= keyword in =lib.rs=
+create a =lib.rs= file in =src= directory.
+#+begin_src rust
+// lib.rs
+pub mod utils;
+#+end_src
+then add this in =main.rs=
+#+begin_src rust
+use <packageName>::utils;
+#+end_src
