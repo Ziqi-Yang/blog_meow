@@ -9,3 +9,23 @@ change the string =your_database_name= to your database name
 SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT, COLUMN_KEY, EXTRA FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = 'your_database_name' ORDER BY TABLE_NAME, ORDINAL_POSITION;
 #+end_src
 then you can use this information to question him.
+
+multiple lines version:
+#+begin_src sql
+SELECT 
+    TABLE_NAME, 
+    COLUMN_NAME, 
+    DATA_TYPE, 
+    COLUMN_TYPE, 
+    IS_NULLABLE, 
+    COLUMN_DEFAULT, 
+    COLUMN_KEY, 
+    EXTRA
+FROM 
+    information_schema.COLUMNS
+WHERE 
+    TABLE_SCHEMA = 'your_database_name'
+ORDER BY 
+    TABLE_NAME, 
+    ORDINAL_POSITION;
+#+end_src
