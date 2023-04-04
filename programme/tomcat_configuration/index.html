@@ -1,0 +1,119 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://ziqi-yang.github.io/blog_meow/scss/main.min.css></head><link rel=stylesheet href=https://ziqi-yang.github.io/blog_meow/scss/single.min.css><body><div id=nav-border><nav id=nav><a class=nav-link href=/blog_meow/>Home</a>
+<a class=nav-link href=/blog_meow/tags/>Tags</a>
+<a class=nav-link href=/blog_meow/archives/>Archives</a>
+<a class=nav-link href=/blog_meow/about/>About me</a>
+<a class=nav-link href=/blog_meow/index.xml>Rss</a></nav></div><div id=content><main><article><header><h1>Tomcat_configuration</h1></header><div id=outline-container-headline-1 class=outline-2><h2 id=headline-1>Installation</h2><div id=outline-text-headline-1 class=outline-text-2><div class="src src-shell"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>sudo pacman -S tomcat10</span></span></code></pre></td></tr></table></div></div></div></div></div><div id=outline-container-headline-2 class=outline-2><h2 id=headline-2>Configuration</h2><div id=outline-text-headline-2 class=outline-text-2><p>follow <a href=https://wiki.archlinux.org/title/tomcat#Initial_configuration>archwiki</a></p></div></div><div id=outline-container-headline-3 class=outline-2><h2 id=headline-3>Run</h2><div id=outline-text-headline-3 class=outline-text-2><p>use <code class=verbatim>/usr/share/tomcat/bin/{startup.sh,shutdown.sh,..}</code> to start and stop tomcat</p></div></div><div id=outline-container-headline-4 class=outline-2><h2 id=headline-4>Web Application</h2><div id=outline-text-headline-4 class=outline-text-2><p>Follow <a href=https://wiki.archlinux.org/title/tomcat#Initial_configuration#Hosting_files_outside_the_webapps_folder>archwiki</a> to show hosting outside folder.
+This is my web application project structure.</p><div class="src src-plain"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-plain data-lang=plain><span style=display:flex><span>.
+</span></span><span style=display:flex><span>├── lib
+</span></span><span style=display:flex><span>├── Makefile
+</span></span><span style=display:flex><span>├── src
+</span></span><span style=display:flex><span>│   └── ie
+</span></span><span style=display:flex><span>│       └── ucd
+</span></span><span style=display:flex><span>│           └── comp2013J
+</span></span><span style=display:flex><span>│               ├── Department.java
+</span></span><span style=display:flex><span>│               ├── EmployeeDAO.java
+</span></span><span style=display:flex><span>│               ├── Employee.java
+</span></span><span style=display:flex><span>│               ├── JDBCTool.java
+</span></span><span style=display:flex><span>│               ├── UserDAO.java
+</span></span><span style=display:flex><span>│               └── User.java
+</span></span><span style=display:flex><span>├── target
+</span></span><span style=display:flex><span>│   └── ie
+</span></span><span style=display:flex><span>│       └── ucd
+</span></span><span style=display:flex><span>│           └── comp2013J
+</span></span><span style=display:flex><span>│               ├── Department.class
+</span></span><span style=display:flex><span>│               ├── Employee.class
+</span></span><span style=display:flex><span>│               ├── EmployeeDAO.class
+</span></span><span style=display:flex><span>│               ├── JDBCTool.class
+</span></span><span style=display:flex><span>│               ├── User.class
+</span></span><span style=display:flex><span>│               └── UserDAO.class
+</span></span><span style=display:flex><span>└── WebContent
+</span></span><span style=display:flex><span>    ├── css
+</span></span><span style=display:flex><span>    │   └── loginstyle.css
+</span></span><span style=display:flex><span>    ├── employeeList.jsp
+</span></span><span style=display:flex><span>    ├── example.jsp
+</span></span><span style=display:flex><span>    ├── footer.html
+</span></span><span style=display:flex><span>    ├── index.jsp
+</span></span><span style=display:flex><span>    ├── login.jsp
+</span></span><span style=display:flex><span>    ├── META-INF
+</span></span><span style=display:flex><span>    │   └── MANIFEST.MF
+</span></span><span style=display:flex><span>    ├── updateEmployee.jsp
+</span></span><span style=display:flex><span>    └── WEB-INF
+</span></span><span style=display:flex><span>        ├── classes
+</span></span><span style=display:flex><span>        │   └── ie
+</span></span><span style=display:flex><span>        │       └── ucd
+</span></span><span style=display:flex><span>        │           └── comp2013J
+</span></span><span style=display:flex><span>        │               ├── Department.class
+</span></span><span style=display:flex><span>        │               ├── Employee.class
+</span></span><span style=display:flex><span>        │               ├── EmployeeDAO.class
+</span></span><span style=display:flex><span>        │               ├── JDBCTool.class
+</span></span><span style=display:flex><span>        │               ├── User.class
+</span></span><span style=display:flex><span>        │               └── UserDAO.class
+</span></span><span style=display:flex><span>        └── lib
+</span></span><span style=display:flex><span>            └── mysql-connector-java-8.0.15.jar</span></span></code></pre></td></tr></table></div></div></div><p>You should move the compiled classes(with directories) in <code class=verbatim>target</code> folder to <code class=verbatim>WEB-INF/class</code> folder
+Here is a sample Makefile:</p><div class="src src-makefile"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">9
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span><span style=color:#00a000>web-fresh</span><span style=color:#666>:</span> build
+</span></span><span style=display:flex><span>	rm -rf ./WebContent/WEB-INF/classes/*
+</span></span><span style=display:flex><span>	cp -r <span style=color:#a2f;font-weight:700>$(</span>BUILD_DIR<span style=color:#a2f;font-weight:700>)</span>/* ./WebContent/WEB-INF/classes/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00a000>web-start</span><span style=color:#666>:</span>
+</span></span><span style=display:flex><span>	sudo /usr/share/tomcat10/bin/startup.sh
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#00a000>web-stop</span><span style=color:#666>:</span>
+</span></span><span style=display:flex><span>	sudo /usr/share/tomcat10/bin/shutdown.sh
+</span></span></code></pre></td></tr></table></div></div></div></div></div></article><aside><nav id=TableOfContents><ul><li><a href=#headline-1>Installation</a></li><li><a href=#headline-2>Configuration</a></li><li><a href=#headline-3>Run</a></li><li><a href=#headline-4>Web Application</a></li></ul></nav></aside></main></div><script src=/blog_meow/js/single.min.js></script></body></html>
