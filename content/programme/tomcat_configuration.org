@@ -1,0 +1,80 @@
+#+title: Tomcat_configuration
+#+date: 2023-04-04T20:09:13+08:00
+#+draft: false
+#+tags[]: java jsp
+
+* Installation
+#+begin_src shell
+sudo pacman -S tomcat10
+#+end_src
+* Configuration
+follow [[https://wiki.archlinux.org/title/tomcat#Initial_configuration][archwiki]]
+* Run
+use =/usr/share/tomcat/bin/{startup.sh,shutdown.sh,..}= to start and stop tomcat
+* Web Application
+Follow [[https://wiki.archlinux.org/title/tomcat#Initial_configuration#Hosting_files_outside_the_webapps_folder][archwiki]] to show hosting outside folder.
+This is my web application project structure.
+#+begin_src plain
+.
+├── lib
+├── Makefile
+├── src
+│   └── ie
+│       └── ucd
+│           └── comp2013J
+│               ├── Department.java
+│               ├── EmployeeDAO.java
+│               ├── Employee.java
+│               ├── JDBCTool.java
+│               ├── UserDAO.java
+│               └── User.java
+├── target
+│   └── ie
+│       └── ucd
+│           └── comp2013J
+│               ├── Department.class
+│               ├── Employee.class
+│               ├── EmployeeDAO.class
+│               ├── JDBCTool.class
+│               ├── User.class
+│               └── UserDAO.class
+└── WebContent
+    ├── css
+    │   └── loginstyle.css
+    ├── employeeList.jsp
+    ├── example.jsp
+    ├── footer.html
+    ├── index.jsp
+    ├── login.jsp
+    ├── META-INF
+    │   └── MANIFEST.MF
+    ├── updateEmployee.jsp
+    └── WEB-INF
+        ├── classes
+        │   └── ie
+        │       └── ucd
+        │           └── comp2013J
+        │               ├── Department.class
+        │               ├── Employee.class
+        │               ├── EmployeeDAO.class
+        │               ├── JDBCTool.class
+        │               ├── User.class
+        │               └── UserDAO.class
+        └── lib
+            └── mysql-connector-java-8.0.15.jar
+#+end_src
+You should move the compiled classes(with directories) in =target= folder to =WEB-INF/class= folder
+Here is a sample Makefile:
+#+begin_src makefile
+web-fresh: build
+	rm -rf ./WebContent/WEB-INF/classes/*
+	cp -r $(BUILD_DIR)/* ./WebContent/WEB-INF/classes/
+
+web-start:
+	sudo /usr/share/tomcat10/bin/startup.sh
+
+web-stop:
+	sudo /usr/share/tomcat10/bin/shutdown.sh
+#+end_src
+
+
