@@ -1,0 +1,26 @@
+#+title: Create an Emacs Major Mode
+#+date: 2023-04-06T09:32:32+08:00
+#+draft: false
+#+tags[]: emacs elisp
+
+* Tutorial 
+1. [[https://www.emacswiki.org/emacs/ModeTutorial#h5o-3][ModeTutorial - EmacsWiki]]
+
+* Emacs General
+1. [[https://www.emacswiki.org/emacs/EmacsSymbolNotation][Emacs Symbol Notation]]
+
+* Regular Expression
+1. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Rx-Constructs.html][Rx Expression - Emacs Manual]]
+2. [[https://www.emacswiki.org/emacs/RegularExpression][regular expression - EmacsWiki]]
+   
+* Syntax Table
+1. [[https://www.emacswiki.org/emacs/EmacsSyntaxTable][Syntax Table - Emacs Wiki]]
+
+* Font Lock & Face
+1. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Levels-of-Font-Lock.html][Levels of Font Lock - Emacs Manual]]
+2. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Search_002dbased-Fontification.html][font-lock-keywords - Emacs Manual]]
+3. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html][Faces for Font Lock - Emacs Manual]]
+4. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Face-Attributes.html][Face Attributes]]
+
+* Example
+1. Indentation Line Function Example: https://github.com/ziglang/zig-mode/blob/master/zig-mode.el (=zig-mode-indent-line=)
