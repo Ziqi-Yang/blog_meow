@@ -4,7 +4,7 @@
 #+tags[]: emacs elisp
 
 * Tutorial 
-1. [[https://www.emacswiki.org/emacs/ModeTutorial#h5o-3][ModeTutorial - EmacsWiki]]
+1. [[https://www.emacswiki.org/emacs/ModeTutorial][ModeTutorial - EmacsWiki]]
 
 * Emacs General
 1. [[https://www.emacswiki.org/emacs/EmacsSymbolNotation][Emacs Symbol Notation]]
