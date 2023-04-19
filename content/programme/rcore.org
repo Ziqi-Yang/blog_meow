@@ -3,16 +3,40 @@
 #+draft: false
 #+tags[]: rust os rCore
 
+Based on [[https://learningos.github.io/rCore-Tutorial-Guide-2023S/index.html][rCore-Tutorial-Guide 2023 春季学期]] and [[https://learningos.github.io/rCore-Tutorial-Book-v3/index.html][rCore-Tutorial-Book 第三版]]
+
+
 * Useful Command
-** To show platforms based on riscv that rustc supports
+** To show platforms based on RISC-V that rustc supports
 #+begin_src shell
 rustc --print target-list | grep riscv
 #+end_src
 
 * Rust Note
-1. use ~#![no_std]~ to not use =std=, so we can build a program which doesn't require =std=.
-2. use ~#![no_main]~ to make compiler don't do initialization work
+** Cross Build (RISC-V)
+=.cargo/.config=
+#+begin_src config
+[build]
+target = "riscv64gc-unknown-none-elf"
+#+end_src
+
+** No Std
+Besides [[https://learningos.github.io/rCore-Tutorial-Guide-2023S/chapter1/2remove-std.html][remove std section]], you can refer to [[https://docs.rust-embedded.org/embedonomicon/smallest-no-std.html][smallest no std - The Embedonomicon]].
+
+* Notes
+1. linker script specifications: ~info ld Scripts~ or you can read in Emacs(~C-h i~)
 
 * Toolings
 1. =strace=
-2. [[https://github.com/rust-embedded/cargo-binutils][cargo-binutils]]
+2. =file= show file format
+3. [[https://github.com/rust-embedded/cargo-binutils][cargo-binutils]] analysis binary
+   installation:
+   #+begin_src shell
+   cargo install cargo-binutils
+   rustup component add llvm-tools-preview
+   #+end_src
+   1. show the heading information of a executable file
+      ~rust-readobj -h <executable>~
+   2. reverse engineering of a executable file
+      ~rust-objdump -S <executable>~
+
