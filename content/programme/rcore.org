@@ -24,12 +24,18 @@ target = "riscv64gc-unknown-none-elf"
 Besides [[https://learningos.github.io/rCore-Tutorial-Guide-2023S/chapter1/2remove-std.html][remove std section]], you can refer to [[https://docs.rust-embedded.org/embedonomicon/smallest-no-std.html][smallest no std - The Embedonomicon]].
 
 * Notes
-1. linker script specifications: ~info ld Scripts~ or you can read in Emacs(~C-h i~)
+** Linker Script
+linker script specifications: ~info ld Scripts~ or you can read in Emacs(~C-h i~)
+
 
 * Toolings
 1. =strace=
 2. =file= show file format
-3. [[https://github.com/rust-embedded/cargo-binutils][cargo-binutils]] analysis binary
+3. =stat= show file/directory status (and size & blocks & Inode & ... information)
+4. =readelf= ELF file information
+   ~readelf -W -S <executable>~ show all the sections of a executable (for instance, `.text`, `.data`)
+   (~rust-readobj --section-headers <executable>~ can also show sections header information of a executable)
+5. [[https://github.com/rust-embedded/cargo-binutils][cargo-binutils]] analysis binary
    installation:
    #+begin_src shell
    cargo install cargo-binutils
@@ -40,3 +46,5 @@ Besides [[https://learningos.github.io/rCore-Tutorial-Guide-2023S/chapter1/2remo
    2. reverse engineering of a executable file
       ~rust-objdump -S <executable>~
 
+* Resources
+1. [[https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc][rust sbi specification]]

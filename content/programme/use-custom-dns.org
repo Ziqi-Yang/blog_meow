@@ -1,0 +1,27 @@
+#+title: Use Custom DNS Name Server
+#+date: 2023-04-26T19:03:21+08:00
+#+draft: false
+#+tags[]: dns
+
+After finding that my school network provided DNS name server doesn't work on my laptop(specifically my Arch Linux system, not my Windows system), I set custom DNS name server for my Arch Linux system.
+
+I use =NetworkManager= to manage my computer network. It automatically query network provider(like a WiFi) and set DNS name server for me by modifying =/etc/resolve.conf=. To set custom DNS name server, the first step is disable NetworkManager's auto setting DNS behavior. Write those content into =/etc/NetworkManager/conf.d/dns.conf= (refer to [[https://wiki.archlinux.org/title/NetworkManager#Unmanaged_/etc/resolv.conf][NetworkManager#Unmanaged_/etc/resolv.conf - ArchWiki]])
+
+#+begin_src text
+[main]
+dns=none
+#+end_src
+
+Then restart NetworkManager by executing command ~sudo systemctl restart NetworkManager~
+
+Then you can change the content of =/etc/resolve.conf= happily :). Here I use the Google's DNS name server.
+
+#+begin_src text
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+#+end_src
+
+After that, you can use =dig= tool(in Arch Linux Pakcage =bind=) to check your DNS setting, for instance, ~dig raw.githubusercontent.com~.
+
+Enjoy!
+
