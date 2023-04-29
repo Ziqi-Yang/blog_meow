@@ -1,13 +1,31 @@
 #+title: English_Stuffs
 #+date: 2023-03-05T22:22:15+08:00
-#+draft: true
+#+draft: false
 #+tags[]: English
-
-1. This is a natural wonder created by the forces of nature and is *unparalleled* in the world
-2. the economy of the Loess Plateau region has *experienced* rapid development
 
 * Reddit Collection
 1. I'm definitely supporting *the hell out of* this release
 
 * Spoken English
 1. I'm sorry, I didn't quite catch that. Can you be a little more specific?
+
+* Writing
+1. This is a natural wonder created by the forces of nature and is *unparalleled* in the world
+2. the economy of the Loess Plateau region has *experienced* rapid development
+3. Her arrogance has *earned* her a lot of enemies.
+
+* Words
+** 28/04/2023
+| 1         | 2          | 3           | 4          | 5         | 6             |
+|-----------+------------+-------------+------------+-----------+---------------|
+| hostility | arrogance  | reflexively | ruthlessly | obnoxious | condescending |
+| genuflect | netiquette | elicit      | sponge     | refrain   | charter       |
+| irritate  | blunder    | collateral  |            |           |               |
+** 28/04/2024
+| 1          | 2                  | 3          | 4          | 5         | 6          |
+|------------+--------------------+------------+------------+-----------+------------|
+| linguistic | tidbits            | harass     | intimidate | lurk      | folkways   |
+| object to  | golden opportunity | anguish    | deviation  | dubious   | outright   |
+| sloppy     | casual             | stiff      | slangy     | hardcover | decent     |
+| tedious    | punchline          | depression | boob       | slack     | cumbersome |
+| manure     |                    |            |            |           |            |
