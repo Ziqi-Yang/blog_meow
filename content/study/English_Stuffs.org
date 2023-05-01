@@ -1,4 +1,4 @@
-#+title: English_Stuffs
+#+title: English Stuffs
 #+date: 2023-03-05T22:22:15+08:00
 #+draft: false
 #+tags[]: English
@@ -13,6 +13,8 @@
 1. This is a natural wonder created by the forces of nature and is *unparalleled* in the world
 2. the economy of the Loess Plateau region has *experienced* rapid development
 3. Her arrogance has *earned* her a lot of enemies.
+4. Her remark struck me because of how succinctly it sums up something that is generally perceived to be the case.
+5. Nor is it useful to insist you've been personally insulted when someone comments that one of your claims was wrong, or that his views differ.
 
 * Words
 ** 28/04/2023
@@ -21,11 +23,25 @@
 | hostility | arrogance  | reflexively | ruthlessly | obnoxious | condescending |
 | genuflect | netiquette | elicit      | sponge     | refrain   | charter       |
 | irritate  | blunder    | collateral  |            |           |               |
-** 28/04/2024
-| 1          | 2                  | 3          | 4          | 5         | 6          |
-|------------+--------------------+------------+------------+-----------+------------|
-| linguistic | tidbits            | harass     | intimidate | lurk      | folkways   |
-| object to  | golden opportunity | anguish    | deviation  | dubious   | outright   |
-| sloppy     | casual             | stiff      | slangy     | hardcover | decent     |
-| tedious    | punchline          | depression | boob       | slack     | cumbersome |
-| manure     |                    |            |            |           |            |
+** 28/04/2023
+| 1             | 2                  | 3          | 4           | 5         | 6             |
+|---------------+--------------------+------------+-------------+-----------+---------------|
+| linguistic    | tidbit             | harass     | intimidate  | lurk      | folkways      |
+| object to     | golden opportunity | anguish    | deviation   | dubious   | outright      |
+| sloppy        | casual             | stiff      | slangy      | hardcover | decent        |
+| tedious       | punchline          | depression | boob        | slack     | cumbersome    |
+| manure        | dump               | cope       | resent      | lame      | grovel        |
+| retreat       | pathetic           | downright  | crude       | primate   | preceding     |
+| chronological | blowup             | succinctly | substantial | courteous | allergic      |
+| superfluous   | metric             | charitable | shun        | brusque   | dissertation  |
+| alley         | guru               | narrative  | scalpel     | hallowed  | grandmotherly |
+| temper        | gratuitous         | flip-side  | slam        | dissect   |               |
+** 01/05/2023
+| 1            | 2         | 3           | 4       | 5            | 6            |
+|--------------+-----------+-------------+---------+--------------+--------------|
+| dung         | followup  | RTFM        | STFW    | flame war    | odds         |
+| chaotic      | screw up  | aside       | whine   | feeble       | petulant     |
+| assault      | lawsuit   | get over    | gruffly | fragile doll | exaggerated  |
+| theatrically | delusions | entitlement | deduce  | lamer        | psychologist |
+| merely       | ignorant  | fixate      | moron   | burp         | diaper       |
+| jail         | hinder    | slob        | kludge  |              |              |
