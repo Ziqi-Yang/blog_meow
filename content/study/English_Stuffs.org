@@ -8,6 +8,24 @@
 
 * Spoken English
 1. I'm sorry, I didn't quite catch that. Can you be a little more specific?
+2. I haven't see you in ages -> long time on see!
+3. I understand you -> I feel you
+4. I'll pay the bill -> It's on me
+5. I made a big mistake -> I screwed up
+6. I'm very hungry -> I'm starving
+7. Please keep the secret -> Mum's the word
+8. I'm listening on you -> I'm all ears
+9. I don't understand it -> I don't get it
+10. Send me a message later -> Hit me up later
+11. I don't know! -> Beats me
+12. I don't have money -> I'm broke
+13. You have to decide -> Make up your mind
+14. Let's meet today -> Let's catch up today
+15. Don't be stupid -> Don't be a jerk!
+16. in good shape
+17. break the ice 打破尴尬
+18. you are on fire 你做的很好
+19. out of
 
 * Writing
 1. This is a natural wonder created by the forces of nature and is *unparalleled* in the world
@@ -15,7 +33,9 @@
 3. Her arrogance has *earned* her a lot of enemies.
 4. Her remark struck me because of how succinctly it sums up something that is generally perceived to be the case.
 5. Nor is it useful to insist you've been personally insulted when someone comments that one of your claims was wrong, or that his views differ.
-
+6. other -> additional
+7. ever-evolving landscape of messaging applications
+   
 * Words
 ** 28/04/2023
 | 1         | 2          | 3           | 4          | 5         | 6             |
@@ -23,7 +43,7 @@
 | hostility | arrogance  | reflexively | ruthlessly | obnoxious | condescending |
 | genuflect | netiquette | elicit      | sponge     | refrain   | charter       |
 | irritate  | blunder    | collateral  |            |           |               |
-** 28/04/2023
+** 29/04/2023
 | 1             | 2                  | 3          | 4           | 5         | 6             |
 |---------------+--------------------+------------+-------------+-----------+---------------|
 | linguistic    | tidbit             | harass     | intimidate  | lurk      | folkways      |
@@ -42,6 +62,67 @@
 | dung         | followup  | RTFM        | STFW    | flame war    | odds         |
 | chaotic      | screw up  | aside       | whine   | feeble       | petulant     |
 | assault      | lawsuit   | get over    | gruffly | fragile doll | exaggerated  |
-| theatrically | delusions | entitlement | deduce  | lamer        | psychologist |
+| theatrically | delusion  | entitlement | deduce  | lamer        | psychologist |
 | merely       | ignorant  | fixate      | moron   | burp         | diaper       |
 | jail         | hinder    | slob        | kludge  |              |              |
+** 02/05/2023
+|          1 |            2 |               3 |        4 |         5 | 6 |
+|------------+--------------+-----------------+----------+-----------+---|
+| altogether | apprehension | misapprehension | obsessed | obsessive |   |
+** 04/05/2023
+| 1        | 2            | 3         | 4          | 5              | 6          |
+|----------+--------------+-----------+------------+----------------+------------|
+| rewind   | instill      | serene    | hideous    | hilarious      | hushed     |
+| costly   | filthy       | towering  | effortless | soaked         | sluggish   |
+| ecstatic | exhilarating | frail     | luminous   | swamped        | prospects  |
+| assembly | seminar      | analogous | terrain    | sociopolitical | compensate |
+** 05/05/2023
+| 1     | 2     | 3              | 4        |       5 |      6 |
+|-------+-------+----------------+----------+---------+--------|
+| rerun | spark | gigeconomy     | finalize | bolster | fester |
+| semen | royal | simultaneously | sled     |         |        |
+** 06/05/2023
+|              1 |       2 |       3 |         4 |        5 |             6 |
+|----------------+---------+---------+-----------+----------+---------------|
+| extraordinaire | nonstop | inquire | customary | contempt | sarcastically |
+** 07/05/2023
+|      1 |        2 |         3 |       4 |        5 | 6 |
+|--------+----------+-----------+---------+----------+---|
+| curate | incident | alternate | precede | corridor |   |
+** 09/05/2023
+| 1           |        2 |    3 |      4 |        5 |          6 |
+|-------------+----------+------+--------+----------+------------|
+| elaborate   | comprise | vita | render | mitigate | imperative |
+| exclusively |          |      |        |          |            |
+** 12/05/2023
+|       1 | 2 | 3 | 4 | 5 | 6 |
+|---------+---+---+---+---+---|
+| anomaly |   |   |   |   |   |
+** 13/05/2023
+| 1         | 2          | 3            | 4              | 5          | 6          |
+|-----------+------------+--------------+----------------+------------+------------|
+| trade-off | safeguard  | demonstrate  | dissemination  | malevolent | deficiency |
+| devote    | immense    | proactive    | aforementioned | benign     | panacea    |
+| harness   | deliberate | deliberation |                |            |            |
+** 14/05/2023
+|           1 |            2 |      3 |       4 |      5 |       6 |
+|-------------+--------------+--------+---------+--------+---------|
+| encompasses | storytelling | impose | inflict | plural | passant |
+** 15/05/2023
+|      1 |     2 |       3 |        4 |          5 | 6 |
+|--------+-------+---------+----------+------------+---|
+| chilly | humid | wrap up |    |
+** 16/05/2023
+|        1 |        2 |          3 |          4 | 5 | 6 |
+|----------+----------+------------+------------+---+---+
+| platonic | pentagon | intonation | compliment |   |   |
+** 18/05/2023
+|            1 | 2 | 3 | 4 | 5 | 6 |
+|--------------+---+---+---+---+---+
+|   masturbate |   |   |   |   |   |
+** 20/05/2023
+| 1       | 2           | 3             | 4            | 5         | 6         |
+|---------+-------------+---------------+--------------+-----------+-----------|
+| commute | amenity     | groove        | close-knit   | immediate | vicinity  |
+| pea     | pod         | oak           | affectionate | roomie    | spectator |
+| mimic   | consecutive | manifestation | spontaneous  |           |           |

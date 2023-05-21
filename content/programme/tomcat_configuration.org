@@ -12,7 +12,6 @@ follow [[https://wiki.archlinux.org/title/tomcat#Initial_configuration][archwiki
 * Run
 use =/usr/share/tomcat/bin/{startup.sh,shutdown.sh,..}= to start and stop tomcat
 * Web Application
-Follow [[https://wiki.archlinux.org/title/tomcat#Initial_configuration#Hosting_files_outside_the_webapps_folder][archwiki]] to show hosting outside folder.
 This is my web application project structure.
 #+begin_src plain
 .
@@ -76,5 +75,9 @@ web-start:
 web-stop:
 	sudo /usr/share/tomcat10/bin/shutdown.sh
 #+end_src
-
+* Run your project
+** Add your project to tomcat application paths, there are two measures to achieve this:
+1. through tomcat web interface [[http://localhost:8080/manager/html]]
+   In =Deploy= -> =Deploy directory or WAR file located on server= section, you should fill the blanks of =Context Path= and =WAR or Directory path=, which are the relative path of URL and the actual project web content path respectively.
+2. use configuration file: follow [[https://wiki.archlinux.org/title/tomcat#Hosting_files_outside_the_webapps_folder][/etc/tomcatn/Catalina/localhost/whatShouldFollowLocalhost.xml - ArchWiki]]
 

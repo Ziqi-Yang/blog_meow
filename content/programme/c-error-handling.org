@@ -1,0 +1,7 @@
+#+title: C Error Handling
+#+date: 2023-05-05T19:34:42+08:00
+#+draft: false
+#+tags[]: c error_handling
+
+1. use ~strerror~ (in =string.h=) to convert err number into error message \\
+   the relationship between error number and error messages can be viewed by =errno -l= (also =man 3 errno= will give you some tips).
