@@ -65,7 +65,8 @@ This is my web application project structure.
 You should move the compiled classes(with directories) in =target= folder to =WEB-INF/class= folder
 Here is a sample Makefile:
 #+begin_src makefile
-web-fresh: build
+web-ref: build # web-refresh
+	mkdir -p ./WebContent/WEB-INF/classes
 	rm -rf ./WebContent/WEB-INF/classes/*
 	cp -r $(BUILD_DIR)/* ./WebContent/WEB-INF/classes/
 
@@ -74,6 +75,12 @@ web-start:
 
 web-stop:
 	sudo /usr/share/tomcat10/bin/shutdown.sh
+
+web-open:
+	xdg-open "http://localhost:8080/<path>"
+
+web-open-manager:
+	xdg-open "http://localhost:8080/manager/html"
 #+end_src
 * Run your project
 ** Add your project to tomcat application paths, there are two measures to achieve this:
