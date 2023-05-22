@@ -96,6 +96,6 @@ xdg-open "http://localhost:8080/manager/html"
 	 sudo rm -rf /var/lib/tomcat10/webapps/pokemon-gallery/
 	 sudo cp -r ./WebContent/ /var/lib/tomcat10/webapps/pokemon-gallery/
    #+end_src
-   It's even better to execute command =sudo chmod -R 755 /var/lib/tomcat10/webapps= before, so you can remove the =sudo= prefix in the above commands.
+   It's even better to execute command =sudo chmod -R 777 /var/lib/tomcat10/webapps= before, so you can remove the =sudo= prefix in the above commands (not in production environment).
    
 
