@@ -66,25 +66,36 @@ You should move the compiled classes(with directories) in =target= folder to =WE
 Here is a sample Makefile:
 #+begin_src makefile
 web-ref: build # web-refresh
-	mkdir -p ./WebContent/WEB-INF/classes
-	rm -rf ./WebContent/WEB-INF/classes/*
-	cp -r $(BUILD_DIR)/* ./WebContent/WEB-INF/classes/
+mkdir -p ./WebContent/WEB-INF/classes
+rm -rf ./WebContent/WEB-INF/classes/*
+cp -r $(BUILD_DIR)/* ./WebContent/WEB-INF/classes/
+sudo rm -rf /var/lib/tomcat10/webapps/pokemon-gallery/
+sudo cp -r ./WebContent/ /var/lib/tomcat10/webapps/pokemon-gallery/
 
 web-start:
-	sudo /usr/share/tomcat10/bin/startup.sh
+sudo /usr/share/tomcat10/bin/startup.sh
 
 web-stop:
-	sudo /usr/share/tomcat10/bin/shutdown.sh
+sudo /usr/share/tomcat10/bin/shutdown.sh
 
 web-open:
-	xdg-open "http://localhost:8080/<path>"
+xdg-open "http://localhost:8080/pokemon-gallery/"
 
 web-open-manager:
-	xdg-open "http://localhost:8080/manager/html"
+xdg-open "http://localhost:8080/manager/html"
 #+end_src
 * Run your project
-** Add your project to tomcat application paths, there are two measures to achieve this:
+** Add your project to tomcat application paths, there are three measures to achieve this:
 1. through tomcat web interface [[http://localhost:8080/manager/html]]
    In =Deploy= -> =Deploy directory or WAR file located on server= section, you should fill the blanks of =Context Path= and =WAR or Directory path=, which are the relative path of URL and the actual project web content path respectively.
 2. use configuration file: follow [[https://wiki.archlinux.org/title/tomcat#Hosting_files_outside_the_webapps_folder][/etc/tomcatn/Catalina/localhost/whatShouldFollowLocalhost.xml - ArchWiki]]
+3. (Recommend: suitable for refresh) copy your web application folder under the tomcat's default =webapp= folder `/var/lib/tomcat10/webapps`
+   the name under =webapp= folder is the relative URL path for your application.
+   as shown in the =Makefile=:
+   #+begin_src 
+	 sudo rm -rf /var/lib/tomcat10/webapps/pokemon-gallery/
+	 sudo cp -r ./WebContent/ /var/lib/tomcat10/webapps/pokemon-gallery/
+   #+end_src
+   It's even better to execute command =sudo chmod -R 755 /var/lib/tomcat10/webapps= before, so you can remove the =sudo= prefix in the above commands.
+   
 
