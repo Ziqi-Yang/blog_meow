@@ -1,6 +1,6 @@
 #+title: 对于如何提问的思考
 #+date: 2023-04-30T15:05:15+08:00
-#+draft: false
+#+draft: true
 #+tags[]: 提问 ysyx
 
 #+begin_quote

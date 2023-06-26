@@ -1,0 +1,55 @@
+#+title: Rust Pass Input to Command Stdin
+#+date: 2023-06-26T11:14:17+08:00
+#+draft: false
+#+tags[]: rust
+
+#+begin_src rust
+use std::{process::{Command, Stdio}, io::Write};
+
+fn copy_to_clipboard_wcopy(s: String) {
+	let mut wcopy = Command::new("wc")
+		.arg("-c")
+		.stdin(Stdio::piped())
+		.stdout(Stdio::piped())
+		.spawn()
+		.expect("Failed to spawn `xclip`: please ensure you have it installed.");
+
+	let mut stdin = wcopy.stdin.take().expect("Failed to write to stdin");
+	std::thread::spawn(move || {
+		stdin.write_all(s.as_bytes()).expect("Failed to write to stdin");
+	});
+	let output = wcopy.wait_with_output().expect("Failed to read stdout");
+  println!("output: {}", String::from_utf8(output.stdout).unwrap());
+}
+
+
+fn main() {
+    copy_to_clipboard_wcopy("El Psy Kongaroo.".to_string());
+}
+#+end_src
+
+or
+
+#+begin_src rust
+use std::{process::{Command, Stdio}, io::Write};
+
+fn copy_to_clipboard_wcopy(s: String) {
+	let mut wcopy = Command::new("wc")
+		.arg("-c")
+		.stdin(Stdio::piped())
+		.stdout(Stdio::piped())
+		.spawn()
+		.expect("Failed to spawn `xclip`: please ensure you have it installed.");
+
+	let mut stdin = wcopy.stdin.take().expect("Failed to write to stdin");
+	stdin.write_all(s.as_bytes()).expect("Failed to write to stdin");
+  drop(stdin);
+	let output = wcopy.wait_with_output().expect("Failed to read stdout");
+  println!("output: {}", String::from_utf8(output.stdout).unwrap());
+}
+
+
+fn main() {
+    copy_to_clipboard_wcopy("El Psy Kongaroo.".to_string());
+}
+#+end_src
