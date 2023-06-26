@@ -1,0 +1,89 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://ziqi-yang.github.io/blog_meow/scss/main.min.css></head><link rel=stylesheet href=https://ziqi-yang.github.io/blog_meow/scss/single.min.css><body><div id=nav-border><nav id=nav><a class=nav-link href=/blog_meow/>Home</a>
+<a class=nav-link href=/blog_meow/tags/>Tags</a>
+<a class=nav-link href=/blog_meow/archives/>Archives</a>
+<a class=nav-link href=/blog_meow/about/>About me</a>
+<a class=nav-link href=/blog_meow/index.xml>Rss</a></nav></div><div id=content><main><article><header><h1>Rust Pass Input to Command Stdin</h1></header><div class="src src-rust"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=display:flex><span><span style=color:#a2f;font-weight:700>use</span><span style=color:#bbb> </span>std::{process::{Command,<span style=color:#bbb> </span>Stdio},<span style=color:#bbb> </span>io::Write};<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#a2f;font-weight:700>fn</span> <span style=color:#00a000>copy_to_clipboard_wcopy</span>(s: <span style=color:#a2f>String</span>)<span style=color:#bbb> </span>{<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span><span style=color:#a2f;font-weight:700>mut</span><span style=color:#bbb> </span>wcopy<span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>Command::new(<span style=color:#b44>&#34;wc&#34;</span>)<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.arg(<span style=color:#b44>&#34;-c&#34;</span>)<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.stdin(Stdio::piped())<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.stdout(Stdio::piped())<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.spawn()<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.expect(<span style=color:#b44>&#34;Failed to spawn `xclip`: please ensure you have it installed.&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span><span style=color:#a2f;font-weight:700>mut</span><span style=color:#bbb> </span>stdin<span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>wcopy.stdin.take().expect(<span style=color:#b44>&#34;Failed to write to stdin&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span>std::thread::spawn(<span style=color:#a2f;font-weight:700>move</span><span style=color:#bbb> </span><span style=color:#666>||</span><span style=color:#bbb> </span>{<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>stdin.write_all(s.as_bytes()).expect(<span style=color:#b44>&#34;Failed to write to stdin&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span>});<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span>output<span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>wcopy.wait_with_output().expect(<span style=color:#b44>&#34;Failed to read stdout&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>  </span>println!(<span style=color:#b44>&#34;output: </span><span style=color:#b68;font-weight:700>{}</span><span style=color:#b44>&#34;</span>,<span style=color:#bbb> </span><span style=color:#a2f>String</span>::from_utf8(output.stdout).unwrap());<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span>}<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#a2f;font-weight:700>fn</span> <span style=color:#00a000>main</span>()<span style=color:#bbb> </span>{<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>copy_to_clipboard_wcopy(<span style=color:#b44>&#34;El Psy Kongaroo.&#34;</span>.to_string());<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span>}</span></span></code></pre></td></tr></table></div></div></div><p>or</p><div class="src src-rust"><div class=highlight><div style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=display:flex><span><span style=color:#a2f;font-weight:700>use</span><span style=color:#bbb> </span>std::{process::{Command,<span style=color:#bbb> </span>Stdio},<span style=color:#bbb> </span>io::Write};<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#a2f;font-weight:700>fn</span> <span style=color:#00a000>copy_to_clipboard_wcopy</span>(s: <span style=color:#a2f>String</span>)<span style=color:#bbb> </span>{<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span><span style=color:#a2f;font-weight:700>mut</span><span style=color:#bbb> </span>wcopy<span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>Command::new(<span style=color:#b44>&#34;wc&#34;</span>)<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.arg(<span style=color:#b44>&#34;-c&#34;</span>)<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.stdin(Stdio::piped())<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.stdout(Stdio::piped())<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.spawn()<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>		</span>.expect(<span style=color:#b44>&#34;Failed to spawn `xclip`: please ensure you have it installed.&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span><span style=color:#a2f;font-weight:700>mut</span><span style=color:#bbb> </span>stdin<span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>wcopy.stdin.take().expect(<span style=color:#b44>&#34;Failed to write to stdin&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span>stdin.write_all(s.as_bytes()).expect(<span style=color:#b44>&#34;Failed to write to stdin&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>  </span><span style=color:#a2f>drop</span>(stdin);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>	</span><span style=color:#a2f;font-weight:700>let</span><span style=color:#bbb> </span>output<span style=color:#bbb> </span><span style=color:#666>=</span><span style=color:#bbb> </span>wcopy.wait_with_output().expect(<span style=color:#b44>&#34;Failed to read stdout&#34;</span>);<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>  </span>println!(<span style=color:#b44>&#34;output: </span><span style=color:#b68;font-weight:700>{}</span><span style=color:#b44>&#34;</span>,<span style=color:#bbb> </span><span style=color:#a2f>String</span>::from_utf8(output.stdout).unwrap());<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span>}<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span><span style=color:#a2f;font-weight:700>fn</span> <span style=color:#00a000>main</span>()<span style=color:#bbb> </span>{<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb>    </span>copy_to_clipboard_wcopy(<span style=color:#b44>&#34;El Psy Kongaroo.&#34;</span>.to_string());<span style=color:#bbb>
+</span></span></span><span style=display:flex><span><span style=color:#bbb></span>}</span></span></code></pre></td></tr></table></div></div></div></article><aside></aside></main></div><script src=/blog_meow/js/single.min.js></script></body></html>
