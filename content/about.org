@@ -7,4 +7,4 @@ draft: false
 
 A Linux and Emacs enthusiast who loves anime and cats. 
 
-- github: https://github.com/Ziqi-Yang
+My social accounts: [[https://bento.me/meow-king][https://bento.me/meow-king]]
